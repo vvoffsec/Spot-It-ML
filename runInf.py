@@ -7,7 +7,7 @@ from collections import Counter
 warnings.filterwarnings("ignore", module="inference")
 warnings.filterwarnings("ignore", module="onnxruntime")
 
-model = inference.get_model("spotitcards/8")
+model = inference.get_model("spotitcards/9")
 
 def extract_predictions(resp):
     if isinstance(resp, list):
@@ -26,7 +26,7 @@ def find_duplicate(image_path):
 
 if __name__ == "__main__":
     dataset_dir = "dataset"
-    output_csv  = "submission.csv"
+    output_csv  = "Venkateswaran_Khandelwal_Gudapati.csv"
 
     with open(output_csv, mode="w", newline="") as csvfile:
         writer = csv.writer(csvfile)
@@ -37,11 +37,11 @@ if __name__ == "__main__":
             imgs.sort(key=lambda fn: int(os.path.splitext(fn)[0]))
 
             # only do the first ten images
-            imgs = imgs[:10]
+            # imgs = imgs[:10]
 
             for fname in imgs:
                 image_path = os.path.join(root, fname)
                 dup = find_duplicate(image_path)
                 writer.writerow([fname, dup])
 
-    print(f"Wrote submission file with first 10 images to {output_csv}")
+    print(f"Wrote submission file with images to {output_csv}")
